@@ -1988,6 +1988,8 @@ export default class MetamaskController extends EventEmitter {
         appStateController.setRecoveryPhraseReminderLastShown.bind(
           appStateController,
         ),
+      setTermsOfUseLastAgreed:
+        appStateController.setTermsOfUseLastAgreed.bind(appStateController),
       setOutdatedBrowserWarningLastShown:
         appStateController.setOutdatedBrowserWarningLastShown.bind(
           appStateController,
