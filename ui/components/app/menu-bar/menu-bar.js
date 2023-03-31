@@ -11,8 +11,9 @@ import { CONNECTED_ACCOUNTS_ROUTE } from '../../../helpers/constants/routes';
 import { useI18nContext } from '../../../hooks/useI18nContext';
 import { getOriginOfCurrentTab } from '../../../selectors';
 import { MetaMetricsContext } from '../../../contexts/metametrics';
-import { ButtonIcon, ICON_NAMES } from '../../component-library';
 import { GlobalMenu } from '../../multichain/global-menu';
+import { ButtonIcon } from '../../component-library';
+import { ICON_NAMES } from '../../component-library/icon/deprecated';
 import AccountOptionsMenu from './account-options-menu';
 
 export default function MenuBar() {

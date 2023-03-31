@@ -14,15 +14,14 @@ import {
   ///: END:ONLY_INCLUDE_IN
 } from '../../../shared/constants/permissions';
 import Tooltip from '../../components/ui/tooltip';
+import { AvatarIcon, Text } from '../../components/component-library';
 import {
-  AvatarIcon,
   ///: BEGIN:ONLY_INCLUDE_IN(flask)
   Icon,
-  Text,
   ///: END:ONLY_INCLUDE_IN
   ICON_NAMES,
   ICON_SIZES,
-} from '../../components/component-library';
+} from '../../components/component-library/icon/deprecated';
 ///: BEGIN:ONLY_INCLUDE_IN(flask)
 import {
   IconColor,
