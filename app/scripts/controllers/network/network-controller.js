@@ -17,21 +17,19 @@ import createSubscriptionManager from 'eth-json-rpc-filters/subscriptionManager'
 import {
   INFURA_PROVIDER_TYPES,
   BUILT_IN_NETWORKS,
-  INFURA_BLOCKED_KEY,
   TEST_NETWORK_TICKER_MAP,
   CHAIN_IDS,
   NETWORK_TYPES,
+  getRpcUrl,
 } from '../../../../shared/constants/network';
 import {
   isPrefixedFormattedHexString,
   isSafeChainId,
 } from '../../../../shared/modules/network.utils';
-import getFetchWithTimeout from '../../../../shared/modules/fetch-with-timeout';
 import createInfuraClient from './createInfuraClient';
 import createJsonRpcClient from './createJsonRpcClient';
 
 const env = process.env.METAMASK_ENV;
-const fetchWithTimeout = getFetchWithTimeout();
 
 let defaultProviderConfigOpts;
 if (process.env.IN_TEST) {
@@ -119,10 +117,6 @@ export default class NetworkController extends EventEmitter {
     // provider and block tracker proxies - because the network changes
     this._providerProxy = null;
     this._blockTrackerProxy = null;
-
-    if (!infuraProjectId || typeof infuraProjectId !== 'string') {
-      throw new Error('Invalid Infura project ID');
-    }
     this._infuraProjectId = infuraProjectId;
 
     this.on(NETWORK_EVENTS.NETWORK_DID_CHANGE, () => {
@@ -205,14 +199,7 @@ export default class NetworkController extends EventEmitter {
 
     // Ping the RPC endpoint so we can confirm that it works
     const initialNetwork = this.getNetworkState();
-    const { type } = this.getProviderConfig();
-    const isInfura = INFURA_PROVIDER_TYPES.includes(type);
-
-    if (isInfura) {
-      this._checkInfuraAvailability(type);
-    } else {
-      this.emit(NETWORK_EVENTS.INFURA_IS_UNBLOCKED);
-    }
+    this.emit(NETWORK_EVENTS.INFURA_IS_UNBLOCKED);
 
     let networkVersion;
     let networkVersionError;
@@ -385,45 +372,6 @@ export default class NetworkController extends EventEmitter {
     this._switchNetwork(config);
   }
 
-  async _checkInfuraAvailability(network) {
-    const rpcUrl = `https://${network}.infura.io/v3/${this._infuraProjectId}`;
-
-    let networkChanged = false;
-    this.once(NETWORK_EVENTS.NETWORK_DID_CHANGE, () => {
-      networkChanged = true;
-    });
-
-    try {
-      const response = await fetchWithTimeout(rpcUrl, {
-        method: 'POST',
-        body: JSON.stringify({
-          jsonrpc: '2.0',
-          method: 'eth_blockNumber',
-          params: [],
-          id: 1,
-        }),
-      });
-
-      if (networkChanged) {
-        return;
-      }
-
-      if (response.ok) {
-        this.emit(NETWORK_EVENTS.INFURA_IS_UNBLOCKED);
-      } else {
-        const responseMessage = await response.json();
-        if (networkChanged) {
-          return;
-        }
-        if (responseMessage.error === INFURA_BLOCKED_KEY) {
-          this.emit(NETWORK_EVENTS.INFURA_IS_BLOCKED);
-        }
-      }
-    } catch (err) {
-      log.warn(`MetaMask - Infura availability check failed`, err);
-    }
-  }
-
   _switchNetwork(opts) {
     // Indicate to subscribers that network is about to change
     this.emit(NETWORK_EVENTS.NETWORK_WILL_CHANGE);
@@ -432,6 +380,7 @@ export default class NetworkController extends EventEmitter {
     // Reset network details
     this._clearNetworkDetails();
     // Configure the provider appropriately
+    console.log(opts);
     this._configureProvider(opts);
     // Notify subscribers that network has changed
     this.emit(NETWORK_EVENTS.NETWORK_DID_CHANGE, opts.type);
@@ -441,7 +390,7 @@ export default class NetworkController extends EventEmitter {
     // infura type-based endpoints
     const isInfura = INFURA_PROVIDER_TYPES.includes(type);
     if (isInfura) {
-      this._configureInfuraProvider(type, this._infuraProjectId);
+      this._configureStandardProvider(getRpcUrl({ network: type }), chainId);
       // url-based rpc endpoints
     } else if (type === NETWORK_TYPES.RPC) {
       this._configureStandardProvider(rpcUrl, chainId);
@@ -452,12 +401,9 @@ export default class NetworkController extends EventEmitter {
     }
   }
 
-  _configureInfuraProvider(type, projectId) {
+  _configureInfuraProvider(type) {
     log.info('NetworkController - configureInfuraProvider', type);
-    const networkClient = createInfuraClient({
-      network: type,
-      projectId,
-    });
+    const networkClient = createInfuraClient({ network: type });
     this._setNetworkClient(networkClient);
   }
 
