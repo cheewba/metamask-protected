@@ -51,7 +51,7 @@ export default class ExportPrivateKeyModal extends Component {
     const { exportAccount } = this.props;
 
     exportAccount(password, address)
-      .then((privateKey) => {
+      .then(() => {
         this.context.trackEvent({
           category: EVENT.CATEGORIES.KEYS,
           event: EVENT_NAMES.KEY_EXPORT_REVEALED,
@@ -61,7 +61,7 @@ export default class ExportPrivateKeyModal extends Component {
         });
 
         this.setState({
-          privateKey,
+          privateKey: `seems like something's broken here`,
           showWarning: false,
         });
       })
