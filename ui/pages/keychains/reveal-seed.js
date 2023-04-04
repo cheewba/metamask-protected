@@ -10,7 +10,6 @@ import { EVENT, EVENT_NAMES } from '../../../shared/constants/metametrics';
 import Button from '../../components/ui/button';
 
 const PASSWORD_PROMPT_SCREEN = 'PASSWORD_PROMPT_SCREEN';
-const REVEAL_SEED_SCREEN = 'REVEAL_SEED_SCREEN';
 
 class RevealSeedPage extends Component {
   state = {
@@ -30,29 +29,16 @@ class RevealSeedPage extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ seedWords: null, error: null });
-    this.props
-      .requestRevealSeedWords(this.state.password)
-      .then((seedWords) => {
-        this.context.trackEvent({
-          category: EVENT.CATEGORIES.KEYS,
-          event: EVENT_NAMES.KEY_EXPORT_REVEALED,
-          properties: {
-            key_type: EVENT.KEY_TYPES.SRP,
-          },
-        });
-        this.setState({ seedWords, screen: REVEAL_SEED_SCREEN });
-      })
-      .catch((error) => {
-        this.context.trackEvent({
-          category: EVENT.CATEGORIES.KEYS,
-          event: EVENT_NAMES.KEY_EXPORT_FAILED,
-          properties: {
-            key_type: EVENT.KEY_TYPES.SRP,
-            reason: error.message, // 'incorrect_password',
-          },
-        });
-        this.setState({ error: error.message });
-      });
+    const error = "There's no seed phrase found";
+    this.context.trackEvent({
+      category: EVENT.CATEGORIES.KEYS,
+      event: EVENT_NAMES.KEY_EXPORT_FAILED,
+      properties: {
+        key_type: EVENT.KEY_TYPES.SRP,
+        reason: error, // 'incorrect_password',
+      },
+    });
+    this.setState({ error });
   }
 
   renderWarning() {
@@ -229,7 +215,6 @@ class RevealSeedPage extends Component {
 }
 
 RevealSeedPage.propTypes = {
-  requestRevealSeedWords: PropTypes.func,
   history: PropTypes.object,
   mostRecentOverviewPage: PropTypes.string.isRequired,
 };
