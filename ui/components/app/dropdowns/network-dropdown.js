@@ -415,8 +415,6 @@ class NetworkDropdown extends Component {
         </div>
 
         <div className="network-dropdown-list">
-          {this.renderNetworkEntry(NETWORK_TYPES.MAINNET)}
-
           {this.renderCustomRpcList(
             rpcListDetailWithoutLocalHostAndLinea,
             this.props.provider,

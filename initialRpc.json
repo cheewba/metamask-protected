@@ -1,0 +1,51 @@
+[
+  {
+    "chainId": "0x1",
+    "nickname": "Ethereum Mainnet",
+    "rpcPrefs": { "blockExplorerUrl": "https://etherscan.io/" },
+    "rpcUrl": "https://eth.llamarpc.com",
+    "ticker": "ETH"
+  },
+  {
+    "chainId": "0x38",
+    "nickname": "BNB Chain",
+    "rpcPrefs": { "blockExplorerUrl": "https://bscscan.com" },
+    "rpcUrl": "https://bsc-dataseed1.binance.org",
+    "ticker": "BNB"
+  },
+  {
+    "chainId": "0xa4b1",
+    "nickname": "Arbitrum One",
+    "rpcPrefs": { "blockExplorerUrl": "https://arbiscan.io/" },
+    "rpcUrl": "https://arbitrum.blockpi.network/v1/rpc/public",
+    "ticker": "ETH"
+  },
+  {
+    "chainId": "0x89",
+    "nickname": "Polygon",
+    "rpcPrefs": { "blockExplorerUrl": "https://polygonscan.com/" },
+    "rpcUrl": "https://polygon.llamarpc.com",
+    "ticker": "MATIC"
+  },
+  {
+    "chainId": "0xa",
+    "nickname": "Optimism",
+    "rpcPrefs": { "blockExplorerUrl": "https://optimistic.etherscan.io/" },
+    "rpcUrl": "https://optimism.blockpi.network/v1/rpc/public",
+    "ticker": "ETH"
+  },
+  {
+    "chainId": "0xa86a",
+    "nickname": "Avalanche",
+    "rpcPrefs": { "blockExplorerUrl": "https://snowtrace.io/" },
+    "rpcUrl": "https://avalanche.blockpi.network/v1/rpc/public",
+    "ticker": "AVAX"
+  },
+  {
+    "chainId": "0x144",
+    "nickname": "zkSync 2 ERA",
+    "rpcPrefs": { "blockExplorerUrl": "https://explorer.zksync.io/" },
+    "rpcUrl": "https://mainnet.era.zksync.io",
+    "ticker": "AVAX"
+  }
+]

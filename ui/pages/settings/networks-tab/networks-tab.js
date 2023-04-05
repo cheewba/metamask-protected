@@ -36,7 +36,10 @@ const defaultNetworks = defaultNetworksData
     viewOnly: true,
     isATestNetwork: TEST_CHAINS.includes(network.chainId),
   }))
-  .filter((network) => network.chainId !== CHAIN_IDS.LINEA_TESTNET);
+  .filter(
+    (network) =>
+      network.chainId !== CHAIN_IDS.LINEA_TESTNET && network.isATestNetwork,
+  );
 
 const NetworksTab = ({ addNewNetwork }) => {
   const t = useI18nContext();
