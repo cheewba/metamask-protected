@@ -46,6 +46,6 @@
     "nickname": "zkSync 2 ERA",
     "rpcPrefs": { "blockExplorerUrl": "https://explorer.zksync.io/" },
     "rpcUrl": "https://mainnet.era.zksync.io",
-    "ticker": "AVAX"
+    "ticker": "ETH"
   }
 ]
