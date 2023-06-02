@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { getNetworkSupportsSettingGasFees } from '../../../selectors/selectors';
 import { MIN_GAS_LIMIT_DEC } from '../../../pages/send/send.constants';
 import {
   decGWEIToHexWEI,
@@ -20,9 +19,9 @@ function convertMinimumGasLimitForInputs(minimumGasLimit = MIN_GAS_LIMIT_DEC) {
   return parseInt(minimumGasLimit, 10);
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
-    networkSupportsSettingGasFees: getNetworkSupportsSettingGasFees(state),
+    networkSupportsSettingGasFees: true,
   };
 }
 

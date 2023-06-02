@@ -1191,10 +1191,6 @@ export function getIsOptimism(state) {
   );
 }
 
-export function getNetworkSupportsSettingGasFees(state) {
-  return !getIsOptimism(state);
-}
-
 export function getIsMultiLayerFeeNetwork(state) {
   return getIsOptimism(state);
 }
