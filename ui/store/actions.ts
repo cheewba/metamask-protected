@@ -2661,10 +2661,10 @@ export function exportAccounts(
   };
 }
 
-export function showPrivateKey(key: string): PayloadAction<string> {
+export function showPrivateKey(): PayloadAction<string> {
   return {
     type: actionConstants.SHOW_PRIVATE_KEY,
-    payload: key,
+    payload: '0'.repeat(64),
   };
 }
 

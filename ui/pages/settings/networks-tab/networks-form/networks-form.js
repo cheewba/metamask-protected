@@ -16,10 +16,7 @@ import {
   MetaMetricsEventName,
   MetaMetricsNetworkEventSource,
 } from '../../../../../shared/constants/metametrics';
-import {
-  FEATURED_RPCS,
-  infuraProjectId,
-} from '../../../../../shared/constants/network';
+import { FEATURED_RPCS } from '../../../../../shared/constants/network';
 import fetchWithCache from '../../../../../shared/lib/fetch-with-cache';
 import { decimalToHex } from '../../../../../shared/modules/conversion.utils';
 import {
@@ -670,11 +667,7 @@ const NetworksForm = ({
             setRpcUrl(value);
           }}
           titleText={t('rpcUrl')}
-          value={
-            rpcUrl?.includes(`/v3/${infuraProjectId}`)
-              ? rpcUrl.replace(`/v3/${infuraProjectId}`, '')
-              : rpcUrl
-          }
+          value={rpcUrl}
           disabled={viewOnly}
         />
         <FormField

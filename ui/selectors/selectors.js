@@ -1315,7 +1315,7 @@ export function getNonTestNetworks(state) {
       providerType: NETWORK_TYPES.MAINNET,
       ticker: CURRENCY_SYMBOLS.ETH,
       id: NETWORK_TYPES.MAINNET,
-      removable: false,
+      removable: true,
     },
     {
       chainId: CHAIN_IDS.LINEA_MAINNET,
@@ -1327,7 +1327,7 @@ export function getNonTestNetworks(state) {
       providerType: NETWORK_TYPES.LINEA_MAINNET,
       ticker: TEST_NETWORK_TICKER_MAP[NETWORK_TYPES.LINEA_MAINNET],
       id: NETWORK_TYPES.LINEA_MAINNET,
-      removable: false,
+      removable: true,
     },
     // Custom networks added by the user
     ...Object.values(networkConfigurations)
