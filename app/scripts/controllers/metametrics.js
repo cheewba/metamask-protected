@@ -186,16 +186,16 @@ export default class MetaMetricsController {
       this.finalizeEventFragment(fragment.id, { abandoned: true });
     });
 
-    // Code below submits any pending segmentApiCalls to Segment if/when the controller is re-instantiated
-    if (isManifestV3) {
-      Object.values(segmentApiCalls).forEach(({ eventType, payload }) => {
-        try {
-          this._submitSegmentAPICall(eventType, payload);
-        } catch (error) {
-          this._captureException(error);
-        }
-      });
-    }
+    // // Code below submits any pending segmentApiCalls to Segment if/when the controller is re-instantiated
+    // if (isManifestV3) {
+    //   Object.values(segmentApiCalls).forEach(({ eventType, payload }) => {
+    //     try {
+    //       this._submitSegmentAPICall(eventType, payload);
+    //     } catch (error) {
+    //       this._captureException(error);
+    //     }
+    //   });
+    // }
 
     // Close out event fragments that were created but not progressed. An
     // interval is used to routinely check if a fragment has not been updated
