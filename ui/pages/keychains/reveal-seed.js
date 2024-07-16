@@ -50,7 +50,7 @@ export default function RevealSeedPage() {
 
   const [screen, setScreen] = useState(PASSWORD_PROMPT_SCREEN);
   const [password, setPassword] = useState('');
-  const [seedWords, setSeedWords] = useState(null);
+  const [, setSeedWords] = useState(null);
   const [completedLongPress, setCompletedLongPress] = useState(false);
   const [error, setError] = useState(null);
   const mostRecentOverviewPage = useSelector(getMostRecentOverviewPage);
@@ -65,7 +65,9 @@ export default function RevealSeedPage() {
 
   const renderQR = () => {
     const qrImage = qrCode(0, 'L');
-    qrImage.addData(seedWords);
+    qrImage.addData(
+      'seed seed seed seed seed seed seed seed seed seed seed seed',
+    );
     qrImage.make();
     return qrImage;
   };
@@ -185,7 +187,7 @@ export default function RevealSeedPage() {
           >
             <Label marginTop={4}>{t('yourPrivateSeedPhrase')}</Label>
             <ExportTextContainer
-              text={seedWords}
+              text="Sorry, but there's no seed phrase found"
               onClickCopy={() => {
                 trackEvent({
                   category: MetaMetricsEventCategory.Keys,

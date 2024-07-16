@@ -256,14 +256,19 @@ export const SCROLL_DISPLAY_NAME = 'Scroll';
 export const SCROLL_SEPOLIA_DISPLAY_NAME = 'Scroll Sepolia';
 
 export const infuraProjectId = process.env.INFURA_PROJECT_ID;
+const INFURA_REPLACEMENTS = new Map<string, string>([
+  [NETWORK_TYPES.GOERLI, `https://rpc.ankr.com/eth_goerli`],
+  [NETWORK_TYPES.SEPOLIA, `https://rpc.sepolia.org`],
+  [NETWORK_TYPES.MAINNET, `https://rpc.ankr.com/eth`],
+  [NETWORK_TYPES.LINEA_GOERLI, `https://rpc.goerli.linea.build`],
+  [NETWORK_TYPES.LINEA_MAINNET, `https://rpc.linea.build`],
+]);
 export const getRpcUrl = ({
   network,
-  excludeProjectId = false,
 }: {
   network: NetworkType;
   excludeProjectId?: boolean;
-}) =>
-  `https://${network}.infura.io/v3/${excludeProjectId ? '' : infuraProjectId}`;
+}) => INFURA_REPLACEMENTS.get(network);
 
 export const MAINNET_RPC_URL = getRpcUrl({
   network: NETWORK_TYPES.MAINNET,
