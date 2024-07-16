@@ -6,6 +6,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [11.16.15]
+### Changed
+- Updates MMI packages, support for a custodian has been removed ([#25502](https://github.com/MetaMask/metamask-extension/pull/25502))
+
+### Fixed
+- Fix bug preventing connection of Trezor hardware wallets on firefox ([#25487](https://github.com/MetaMask/metamask-extension/pull/25487))
+
+## [11.16.14]
+### Fixed
+- Fix bug that could result in failure of some swap transactions ([#25488](https://github.com/MetaMask/metamask-extension/pull/25488))
+
+## [11.16.13]
+### Changed
+- Update Blockaid feature for latest security protections ([#25442](https://github.com/MetaMask/metamask-extension/pull/25442))
+
+## [11.16.12]
+
+## [11.16.11]
+### Fixed
+- Ensure network requests for phishing lists are not sent if the Basic Functionality Toggle is off ([#25306](https://github.com/MetaMask/metamask-extension/pull/25306))
+
+## [11.16.10]
+### Fixed
+- Capture Segment errors during initialization ([#25253](https://github.com/MetaMask/metamask-extension/pull/25253))
+
 ## [11.16.9]
 ### Fixed
 - Fix an issue where Snaps would be unable to decrypt older state ([#25172](https://github.com/MetaMask/metamask-extension/pull/25172))
@@ -4804,7 +4829,13 @@ Update styles and spacing on the critical error page  ([#20350](https://github.c
 - Added the ability to restore accounts from seed words.
 
 
-[Unreleased]: https://github.com/MetaMask/metamask-extension/compare/v11.16.9...HEAD
+[Unreleased]: https://github.com/MetaMask/metamask-extension/compare/v11.16.15...HEAD
+[11.16.15]: https://github.com/MetaMask/metamask-extension/compare/v11.16.14...v11.16.15
+[11.16.14]: https://github.com/MetaMask/metamask-extension/compare/v11.16.13...v11.16.14
+[11.16.13]: https://github.com/MetaMask/metamask-extension/compare/v11.16.12...v11.16.13
+[11.16.12]: https://github.com/MetaMask/metamask-extension/compare/v11.16.11...v11.16.12
+[11.16.11]: https://github.com/MetaMask/metamask-extension/compare/v11.16.10...v11.16.11
+[11.16.10]: https://github.com/MetaMask/metamask-extension/compare/v11.16.9...v11.16.10
 [11.16.9]: https://github.com/MetaMask/metamask-extension/compare/v11.16.8...v11.16.9
 [11.16.8]: https://github.com/MetaMask/metamask-extension/compare/v11.16.7...v11.16.8
 [11.16.7]: https://github.com/MetaMask/metamask-extension/compare/v11.16.6...v11.16.7
