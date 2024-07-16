@@ -195,7 +195,7 @@ export default class MetaMetricsController {
     //       this._captureException(error);
     //     }
     //   });
-    // }
+    // // }
 
     // Close out event fragments that were created but not progressed. An
     // interval is used to routinely check if a fragment has not been updated
